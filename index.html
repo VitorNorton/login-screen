@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign in form with Validation</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css'>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div class="container" id="container">
+  <div class="form-container sign-up-container">
+    <form id="signUpForm" action="#">
+      <h1>Create Account</h1>
+      <div class="social-container">
+        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="social"><i class="fab fa-github"></i></a>
+      </div>
+      <span>or use your email for registration</span>
+      <input type="text" placeholder="Name" />
+      <input type="email" placeholder="Email" id="signUpEmail"/>
+      <input type="password" placeholder="Password" id="signUpPassword"/>
+      <span id="signUpError" style="color: red; display: none;"></span>
+      <button type="submit">Sign Up</button>
+    </form>
+  </div>
+  <div class="form-container sign-in-container">
+    <form id="signInForm" action="#">
+      <h1>Sign in</h1>
+      <div class="social-container">
+        <a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+        <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" class="social"><i class="fab fa-github"></i></a>
+      </div>
+      <span>or use your account</span>
+      <input type="email" placeholder="Email" id="signInEmail"/>
+      <input type="password" placeholder="Password" id="signInPassword"/>
+      <span id="signInError" style="color: red; display: none;"></span>
+      <a href="#">Forgot your password?</a>
+      <button type="submit">Sign In</button>
+    </form>
+  </div>
+  <div class="overlay-container">
+    <div class="overlay">
+      <div class="overlay-panel overlay-left">
+        <h1>Welcome Back!</h1>
+        <p>To keep connected with us please login with your personal info</p>
+        <button class="ghost" id="signIn">Sign In</button>
+      </div>
+      <div class="overlay-panel overlay-right">
+        <h1>Hello, Friend!</h1>
+        <p>Enter your personal details and start journey with us</p>
+        <button class="ghost" id="signUp">Create Account</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="./script.js"></script>
+<script>
+  document.getElementById('signUpForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const email = document.getElementById('signUpEmail').value;
+    const password = document.getElementById('signUpPassword').value;
+    const errorElement = document.getElementById('signUpError');
+
+    if (!validateEmail(email)) {
+      errorElement.textContent = 'Invalid email format';
+      errorElement.style.display = 'block';
+      return;
+    }
+
+    if (password.length < 6) {
+      errorElement.textContent = 'Password must be at least 6 characters';
+      errorElement.style.display = 'block';
+      return;
+    }
+
+    errorElement.style.display = 'none';
+    // Continue with form submission
+    alert('Form submitted successfully');
+  });
+
+  document.getElementById('signInForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const email = document.getElementById('signInEmail').value;
+    const password = document.getElementById('signInPassword').value;
+    const errorElement = document.getElementById('signInError');
+
+    if (!validateEmail(email)) {
+      errorElement.textContent = 'Invalid email format';
+      errorElement.style.display = 'block';
+      return;
+    }
+
+    if (password.length < 6) {
+      errorElement.textContent = 'Password must be at least 6 characters';
+      errorElement.style.display = 'block';
+      return;
+    }
+
+    errorElement.style.display = 'none';
+    // Continue with form submission
+    alert('Form submitted successfully');
+  });
+
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  }
+</script>
+</body>
+</html>
